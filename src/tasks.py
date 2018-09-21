@@ -63,13 +63,14 @@ def delete_task():
     if not task_number.isdigit():
         print("Please fill in correct number")
         return
-    try:
-        deleted_task = todo_list.pop(task_number)
-        print("{} has been deleted".format(deleted_task))
+    task = todo_list.get(task_number, "This task number does not exist")
+    if task is "This task number does not exist":
+        print(task)
         return
-    except KeyError:
-        print("This task number does not exist")
-        return
+    deleted_task = todo_list.pop(task_number)
+    print("{} has been deleted".format(deleted_task))
+    return
+
 
 # Write a function that marks a task finished
 
@@ -86,21 +87,22 @@ def mark_as_finished():
     if not task_number.isdigit():
         print("Please fill in correct number")
         return
-    not_finished = []
-    try:
-        for item in list(todo_list.values()):
-            if '[finished]' not in item:
-                not_finished.append(item)
-        if todo_list[task_number] in not_finished:
-            finished_task = todo_list.pop(task_number) + ' ' + '[finished]'
-            todo_list[task_number] = finished_task
-            print("{} has been marked as Finished".format(todo_list[task_number].replace('[finished]', '')))
-            get_tasks()
-            return
-        return "{} has already been marked as Finished".format(todo_list[task_number].replace('[finished]', ''))
-    except KeyError:
-        print("This task number does not exist")
+    task = todo_list.get(task_number, "This task number does not exist")
+    if task is "This task number does not exist":
+        print(task)
         return
+    not_finished = []
+    for item in list(todo_list.values()):
+        if '[finished]' not in item:
+            not_finished.append(item)
+    if todo_list[task_number] in not_finished:
+        finished_task = todo_list.pop(task_number) + ' ' + '[finished]'
+        todo_list[task_number] = finished_task
+        print("{} has been marked as Finished".format(todo_list[task_number].replace('[finished]', '')))
+        get_tasks()
+        return
+    return "{} has already been marked as Finished".format(todo_list[task_number].replace('[finished]', ''))
+
 
 
 # Write a function deletes all tasks

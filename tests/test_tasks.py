@@ -6,7 +6,7 @@ class TestTasks(unittest.TestCase):
 
     # Tests for create task
     def test_create_task(self):
-        add_task = create_task("Brush your teeth")
+        add_task = create_task()
         self.assertIn("Brush your teeth has been added", add_task)
 
     def test_if_task_exists(self):
@@ -15,7 +15,7 @@ class TestTasks(unittest.TestCase):
         self.assertIn('Edinburgh already exists in the Todo list', add_task)
 
     def test_if_task_integer(self):
-        add_task = create_task("7")
+        add_task = create_task()
         self.assertIn("Please input proper name for task", add_task)
 
     def test_if_task_empty(self):

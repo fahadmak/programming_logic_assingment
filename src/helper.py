@@ -1,5 +1,6 @@
-from src.tasks import get_tasks, create_task, delete_task, delete_all_tasks, mark_as_finished  # import other functions as well
+from src.tasks import (get_tasks, create_task, delete_task, delete_all_tasks, mark_as_finished)  # import other functions as well
 from src.accounts import login_prompt  # import the function as well
+
 
 selections = {
             '1': 'Create Task',
@@ -23,6 +24,8 @@ def new_line():
 
 def select():
     new_line()
+    print("Hello your welcome to the To do App\n"
+          "<----------> Menu <---------->")
     options()
     new_line()
     selection = input("Choose an option [Should be a number]: ")
@@ -41,7 +44,11 @@ def select():
         delete_all_tasks()
         return select()
 
-    elif selection is '4':
+    return extra_ifs(selection)
+
+
+def extra_ifs(selection):
+    if selection is '4':
         new_line()
         mark_as_finished()
         return select()

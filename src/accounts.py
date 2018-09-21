@@ -23,8 +23,6 @@ def login_prompt():
     return login_prompt()
 
 
-
-
 def add_account(name, password):
     """
     Create New user with Name and Password
