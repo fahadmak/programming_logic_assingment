@@ -11,11 +11,16 @@ def login_prompt():
         return login_prompt()
     if not (name in accounts.values() or password in accounts.keys()):
         account = add_account(name, password)
+        print(account)
         return account
     account = [[password, name] for k, v in accounts.items() if k == password and v == name]
     if account:
         user = login(name, password)
+        print(user)
+        print("")
         return user
+    print("Please input correct password and name to login")
+    return login_prompt()
 
 
 
